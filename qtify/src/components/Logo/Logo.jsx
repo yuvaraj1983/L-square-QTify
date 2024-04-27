@@ -4,7 +4,7 @@ import LogoImage from "../../assets/logo.png"
 function Logo() {
  
   return (
-    <img style={{textAlign: 'center'}}  src={LogoImage} alt="logo" width={67} />
+    <img style={{textAlign: 'center'}} sx={{alignItems: 'center'}} src={LogoImage} alt="logo" width={67} />
   )
 }
 

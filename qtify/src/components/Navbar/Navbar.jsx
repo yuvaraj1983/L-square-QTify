@@ -16,7 +16,7 @@ function Navbar() {
     return (
         <AppBar  sx={{backgroundColor: '#00BD2B', display: 'flex', flexDirection: 'column',  justifyContent: 'space-between'}}>
             <Toolbar>
-                <Logo />
+                <Logo style={{margin:"14px"}} />
                <Search />
 
                 <Button  />
