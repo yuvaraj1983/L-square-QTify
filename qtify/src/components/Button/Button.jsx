@@ -7,6 +7,7 @@ function Button()  {
     color: '#00BD2B',
     backgroundColor: '#121212',
     textTransform: 'none',
+    fontFamily: "Poppins",
     "&:hover": {
       backgroundColor: '#121212',
     },
