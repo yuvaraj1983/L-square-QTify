@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import ProductCard from './ProductCard';
 import { Button, Grid, Typography } from '@mui/material'
+import Carousel from '../Carousel/Carousel';
 
 const ProductCards = ({type}) => {
   const [albums, setAlbums] = useState([]);
@@ -45,9 +46,10 @@ const ProductCards = ({type}) => {
       <Grid sx={{backgroundColor: '#121212'}} container  spacing={1}>
     
     {
+      // <Carousel albums={albums} />
     
       albums.map((alb) => (
-    
+   
     <Grid sx={{padding:0.5}} item  columnSpacing={5} xs={6} md={2} key={alb._id}>
           <ProductCard album={alb}  />
          
@@ -65,8 +67,8 @@ const ProductCards = ({type}) => {
     </div>
       
       <Grid sx={{backgroundColor: '#121212'}} container  spacing={1}>
-    
-    {
+      <Carousel albums={newalbums} />
+    {/* {
     
     newalbums.map((alb) => (
     
@@ -75,7 +77,7 @@ const ProductCards = ({type}) => {
          
      </Grid>
    ))
-  }
+  } */}
       </Grid>
 </>
 }
