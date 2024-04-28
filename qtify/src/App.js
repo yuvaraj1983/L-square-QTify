@@ -1,8 +1,10 @@
 import React from 'react'
 import Navbar from './components/Navbar/Navbar'
 import HeroSection from './components/HeroSection/HeroSection'
-import { Grid } from '@mui/material'
+import { Grid , Divider} from '@mui/material'
 
+
+import ProductCards from './components/Card/ProductCards';
 
 function App() {
   return (
@@ -10,7 +12,9 @@ function App() {
       
       <Navbar />
       <HeroSection />
-      
+      <ProductCards type="all" />
+      <Divider sx={{background: '#00BD2B'}} />
+      <ProductCards type="new" />
     </>
   
   )
