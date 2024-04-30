@@ -12,12 +12,15 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-const Carousel = ({albums}) => {
+const Carousel = ({albums, issong}) => {
+  if(issong) {
+    console.log('songs carousel')
+  }
   return (
 
 
     <>
-     <Grid sx={{backgroundColor: '#121212'}} container  spacing={1}>
+     <Grid  sx={{backgroundColor: '#121212'}} container  spacing={1}>
     
      <Swiper
       // install Swiper modules
@@ -35,7 +38,7 @@ albums?.map((alb) => (
 
     <SwiperSlide key={alb._id}>
      <Grid item key={alb._id}>
-      <ProductCard album={alb}  />
+      <ProductCard key={alb._id} album={alb} issong={issong}  />
     </Grid>
     </SwiperSlide>
   

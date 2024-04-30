@@ -11,11 +11,12 @@ function App() {
     <> 
       
       <Navbar />
-      <HeroSection />
-      <ProductCards type="all" />
-      <Divider sx={{background: '#00BD2B'}} />
-      <ProductCards type="new" />
-      <Carousel />
+       <HeroSection />
+       <ProductCards type="all" label="Top Albums"/>
+       <Divider sx={{background: '#00BD2B'}} />
+       <ProductCards type="new" label="New Albums" />
+       <Divider sx={{background: '#00BD2B'}} />
+      <ProductCards type="song"  label="Songs"  />
     </>
   
   )

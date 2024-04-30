@@ -2,8 +2,8 @@ import React from 'react'
 import { Card, CardMedia, CardContent, Typography, Chip } from '@mui/material'
 
 
-const ProductCard = ({album}) => {
-  console.log('particular album', album)
+const ProductCard = ({album, issong}) => {
+  console.log('issong', issong)
   return (
     <>
  <Card sx={{  borderRadius: 2, marginRight: 2}}>
@@ -13,7 +13,11 @@ const ProductCard = ({album}) => {
       title="green iguana"
     />
     <CardContent>
-    <Chip sx={{background: '#121212', color: 'white', height:"20px"}} label={`${album.follows} follows`}/>
+    {
+      !issong ? <Chip sx={{background: '#121212', color: 'white', height:"20px"}} label={`${album.follows} follows`}/>
+      :
+      <Chip sx={{background: '#121212', color: 'white', height:"20px"}} label={`${album.likes} likes`}/>
+    }
   
     </CardContent>
    

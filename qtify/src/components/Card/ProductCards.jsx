@@ -3,10 +3,13 @@ import axios from 'axios';
 import ProductCard from './ProductCard';
 import { Button, Grid, Typography } from '@mui/material'
 import Carousel from '../Carousel/Carousel';
+import TabComponent from '../TabComponent/TabComponent'
 
-const ProductCards = ({type}) => {
+const ProductCards = ({type, label}) => {
   const [albums, setAlbums] = useState([]);
   const [newalbums, setNewAlbums] = useState([]);
+  const [songs, setSongs] = useState([]);
+  const [genres, setGenres] = useState([]);
   const colorSX = {
     backgroundColor: '#121212',
     color: '#0FFFFFF'
@@ -17,7 +20,7 @@ const ProductCards = ({type}) => {
     if(type==="all") {
       axios.get('https://qtify-backend-labs.crio.do/albums/top')
       .then((res) =>{
-       console.log(res.data);
+    
        setAlbums(res.data);
       })
       .catch((err) => console.log(err));
@@ -25,12 +28,26 @@ const ProductCards = ({type}) => {
   else  if(type==="new") {
       axios.get('https://qtify-backend-labs.crio.do/albums/new')
       .then((res) =>{
-      console.log(res.data);
+    
       setNewAlbums(res.data);
       })
       .catch((err) => console.log(err));
     }
-  },[albums, newalbums])
+    else if(type==="song") {
+      axios.get('https://qtify-backend-labs.crio.do/songs')
+      .then((res) =>{
+      console.log(res.data);
+      setSongs(res.data);
+    })
+      .catch((err) => console.log(err));
+    }
+    axios.get('https://qtify-backend-labs.crio.do/genres')
+    .then((res) => {
+      setGenres(res.data)
+    })
+    .catch((err) => console.log(err));
+    
+  },[])
 
   return (
     <>
@@ -38,20 +55,17 @@ const ProductCards = ({type}) => {
     type === "all" ?
     <>
     <div style={{display: 'flex', flexDirection: 'row', padding:"20px",justifyContent:'space-between', background: '#121212'}}> 
-      <Typography color='white' sx={{ fontSize:"20px"}}>Top Albums</Typography>
-      {/* <Typography color='#34C94B' variant='button'></Typography> */}
-     <Button sx={{color:'#34C94B', textTransform:'none', fontSize:"20px"}}>Collapse</Button>
+      <Typography color='white' sx={{ fontSize:"20px"}}>{`${label}`}</Typography>
+      <Button sx={{color:'#34C94B', textTransform:'none', fontSize:"20px"}}>Collapse</Button>
     </div>
       
       <Grid sx={{backgroundColor: '#121212'}} container  spacing={1}>
     
     {
-      // <Carousel albums={albums} />
-    
       albums.map((alb) => (
    
-    <Grid sx={{padding:0.5}} item  columnSpacing={5} xs={6} md={2} key={alb._id}>
-          <ProductCard album={alb}  />
+    <Grid  sx={{padding:0.5}} item  columnSpacing={5} xs={6} md={2} key={alb._id}>
+          <ProductCard album={alb}  issong={false}/>
          
      </Grid>
    ))
@@ -61,24 +75,25 @@ const ProductCards = ({type}) => {
 
 <>
     <div style={{display: 'flex', flexDirection: 'row', padding:"20px",fontSize:"50px", justifyContent:'space-between', background: '#121212'}}> 
-      <Typography color='white'>New Albums</Typography>
-      <Typography color='#34C94B'>Show all</Typography>
+      <Typography color='white'>
+         { `${label}` }
+       </Typography>
+       {
+        type === 'new' ? <Typography  color='#34C94B'>Show all</Typography> : null
+       }
+      
      
     </div>
       
-      <Grid sx={{backgroundColor: '#121212'}} container  spacing={1}>
-      <Carousel albums={newalbums} />
-    {/* {
-    
-    newalbums.map((alb) => (
-    
-    <Grid sx={{padding:0.5}} item  columnSpacing={5} xs={6} md={2} key={alb._id}>
-          <ProductCard album={alb}  />
-         
-     </Grid>
-   ))
-  } */}
-      </Grid>
+      {
+        type==='new' && <Carousel albums={type==='new'?newalbums:songs} issong={type==='new'?false:true} /> 
+      } 
+
+      {
+        type==='song' && <TabComponent gener={genres} songs={songs} />
+      }
+  
+ 
 </>
 }
     </>
