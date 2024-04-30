@@ -3,7 +3,7 @@ import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { Grid } from '@mui/material'
+import { Grid, Tooltip } from '@mui/material'
 
 import ProductCard from '../Card/ProductCard';
 
@@ -35,13 +35,13 @@ const Carousel = ({albums, issong}) => {
        
         {
 albums?.map((alb) => (
-
+ 
     <SwiperSlide key={alb._id}>
      <Grid item key={alb._id}>
       <ProductCard key={alb._id} album={alb} issong={issong}  />
     </Grid>
     </SwiperSlide>
-  
+ 
 )) 
         }
     

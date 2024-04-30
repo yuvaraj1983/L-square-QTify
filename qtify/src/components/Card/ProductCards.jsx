@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import ProductCard from './ProductCard';
-import { Button, Grid, Typography } from '@mui/material'
+import { Button, Grid, Typography, Tooltip } from '@mui/material'
 import Carousel from '../Carousel/Carousel';
 import TabComponent from '../TabComponent/TabComponent'
 
@@ -56,7 +56,9 @@ const ProductCards = ({type, label}) => {
     <>
     <div style={{display: 'flex', flexDirection: 'row', padding:"20px",justifyContent:'space-between', background: '#121212'}}> 
       <Typography color='white' sx={{ fontSize:"20px"}}>{`${label}`}</Typography>
+     
       <Button sx={{color:'#34C94B', textTransform:'none', fontSize:"20px"}}>Collapse</Button>
+     
     </div>
       
       <Grid sx={{backgroundColor: '#121212'}} container  spacing={1}>
@@ -65,7 +67,10 @@ const ProductCards = ({type, label}) => {
       albums.map((alb) => (
    
     <Grid  sx={{padding:0.5}} item  columnSpacing={5} xs={6} md={2} key={alb._id}>
-          <ProductCard album={alb}  issong={false}/>
+        <Tooltip title="Add" arrow placement="top">
+        <ProductCard album={alb}  issong={false}/>
+        </Tooltip>
+          
          
      </Grid>
    ))

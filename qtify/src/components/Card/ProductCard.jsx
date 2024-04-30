@@ -1,12 +1,13 @@
 import React from 'react'
-import { Card, CardMedia, CardContent, Typography, Chip } from '@mui/material'
+import { Card, CardMedia, CardContent, Typography, Chip, Tooltip } from '@mui/material'
 
 
 const ProductCard = ({album, issong}) => {
-  console.log('issong', issong)
+ 
   return (
     <>
- <Card sx={{  borderRadius: 2, marginRight: 2}}>
+     <Tooltip title={album && album.songs && `${album.songs.length} songs`} arrow placement="top">
+  <Card sx={{  borderRadius: 2, marginRight: 2}}>
     <CardMedia
       sx={{ height: 230 }}
       image={album.image}
@@ -23,6 +24,7 @@ const ProductCard = ({album, issong}) => {
    
     
   </Card>
+  </Tooltip>
   <Typography sx={{textAlign: 'left', color:'white', background: '#121212'}} gutterBottom >
         {album.title}
   </Typography>
